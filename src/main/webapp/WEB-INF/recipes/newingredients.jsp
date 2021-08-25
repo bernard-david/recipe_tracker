@@ -22,13 +22,18 @@
 		    </div>
 		    <div class="form-group">
 		            <label>Measurement:</label>
-		            <form:input path="measurment" class="form-control" />
-		            <form:errors path="measurment" class="text-danger" />
+		            <form:input path="measurement" class="form-control" />
+		            <form:errors path="measurement" class="text-danger" />
 		    </div>
 		    <div class="form-group">
-		            <label>quantity:</label>
+		            <label>Quantity:</label>
 		            <form:input path="quantity" class="form-control" />
 		            <form:errors path="quantity" class="text-danger" />
+		    </div>
+		    <div class="form-group">
+		            <label>Brand (optional):</label>
+		            <form:input path="brand" class="form-control" />
+		            <form:errors path="brand" class="text-danger" />
 		    </div>
 		    <input type="submit" value="Finish" class="btn btn-primary" />
 		</form:form>
