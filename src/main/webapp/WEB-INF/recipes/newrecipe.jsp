@@ -20,7 +20,6 @@
 		            <form:input path="name" class="form-control" />
 		            <form:errors path="name" class="text-danger" />
 		    </div>
-		    
 		</form:form>
 	</div>
 </body>
