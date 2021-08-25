@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.codingdojo.recipetracker.models.Recipe;
 
+
+
 @Repository
 public interface RecipeRepository extends CrudRepository<Recipe, Long>{
 	

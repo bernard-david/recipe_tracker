@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.codingdojo.recipetracker.models.Ingredient;
 import com.codingdojo.recipetracker.models.LoginUser;
 import com.codingdojo.recipetracker.models.Recipe;
 import com.codingdojo.recipetracker.models.User;
@@ -64,13 +65,38 @@ public class HomeController {
     
     @PostMapping("/recipes/create")
     public String createRecipe(@Valid @ModelAttribute("newRecipe") Recipe newRecipe, 
-            BindingResult result, Model model, HttpSession session) {
+            BindingResult result, Model model, HttpSession session, @ModelAttribute("newIngredient") Ingredient newIngredient) {
         if(result.hasErrors()) {
             return "/recipes/newrecipe.jsp";
         }
         
+        return "redirect:/new-ingredient";
+    }
+    
+    
+//    ------------------------------------------------------------------------------
+//    New Ingredients
+//    ------------------------------------------------------------------------------
+    
+    @GetMapping("/new-ingredient")
+    public String newIngredients(Model model, HttpSession session, @ModelAttribute("newIngredient") Ingredient newIngredient) {
+    	Long userId = this.userSessionId(session);
+    	if(userId == null) {
+    		return "redirect:/";
+    	}
+        return "/recipes/newingredients.jsp";
+    }
+    
+    @PostMapping("recipes/ingredient")
+    public String createIngredient(@Valid @ModelAttribute("newIngredient") Ingredient newIngredient, 
+            BindingResult result, Model model, HttpSession session) {
+        if(result.hasErrors()) {
+            return "/recipes/newingredients.jsp";
+        }
+        
         return "redirect:/new-recipe";
     }
+    
     
     
 //    ------------------------------------------------------------------------------
@@ -81,7 +107,7 @@ public class HomeController {
 //    ------------------------------------------------------------------------------
     
     @GetMapping("/recipe/{id}")
-    public String newRecipePage(@PathVariable("id") Long id,Model model, HttpSession session) {
+    public String RecipePage(@PathVariable("id") Long id,Model model, HttpSession session) {
     	Long userId = this.userSessionId(session);
     	if(userId == null) {
     		return "redirect:/";
@@ -94,7 +120,21 @@ public class HomeController {
     
     
     
-    
+//  ------------------------------------------------------------------------------
+//  Show All Recipe
+//  ------------------------------------------------------------------------------
+  
+  @GetMapping("/recipes")
+  public String newRecipePage(Model model, HttpSession session) {
+  	Long userId = this.userSessionId(session);
+  	if(userId == null) {
+  		return "redirect:/";
+  	}
+  	model.addAttribute("recipe", recipeServ.getRecipe());
+      return "/recipes/allrecipes.jsp";
+  }
+  
+//  ------------------------------------------------------------------------------
     
     
     
