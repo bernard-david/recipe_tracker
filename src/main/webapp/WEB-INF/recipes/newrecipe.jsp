@@ -41,13 +41,13 @@
 		    	No<form:radiobutton path="under30" value="${false}"/>
 		    </div>
 		    <div class="form-group">
-		            <label>Prep Time:</label>
-		            <form:input path="prepTime" class="form-control" />
+		            <label>Prep Time (in minutes):</label>
+		            <form:input type="number" path="prepTime" class="form-control" />
 		            <form:errors path="prepTime" class="text-danger" />
 		    </div>
 		    <div class="form-group">
-		            <label>Cook Time:</label>
-		            <form:input path="cookTime" class="form-control" />
+		            <label>Cook Time (in minutes):</label>
+		            <form:input type="number" path="cookTime" class="form-control" />
 		            <form:errors path="cookTime" class="text-danger" />
 		    </div>
 		    <div class="form-group">
@@ -65,6 +65,7 @@
 		    <div class="form-group">
 		    	<label>Diet:</label>
 		    	<form:select path="dietRequirement" class="form-select">
+		    			<form:option value="None"/>
 		            	<form:option value="Gluten Free"/>
 		            	<form:option value="Vegan"/>
 		            	<form:option value="Vegetarian"/>
@@ -73,6 +74,7 @@
 	            </form:select>
 	            <form:errors path="prepTime" class="text-danger" />
 		    </div>
+		    <br />
 		    <form:hidden path="creator" value="${user.id}"/>
 		    <input type="submit" value="Add Ingredients" class="btn btn-primary" />
 		</form:form>
