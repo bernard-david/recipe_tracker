@@ -1,5 +1,6 @@
 package com.codingdojo.recipetracker.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class Recipe {
     private Integer cookTime;
     private String category;
     private String dietRequirement;
-    @NotEmpty(message="Please add a minumum of one step!")
-    private List<String> steps;
+
+    private ArrayList<String> steps;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -76,16 +77,19 @@ public class Recipe {
     }
     
     
+    
     public Recipe() {}
      
     
+	
+	
 	public Recipe(Long id, @NotEmpty(message = "Please enter the recipe name") String name,
 			@NotEmpty(message = "Please enter the recipe description") String description, String extraComments,
 			String picture, @NotNull(message = "Please select Yes or No") Boolean under30,
 			@NotNull(message = "Please enter prep time in minuets") Integer prepTime,
 			@NotNull(message = "Please enter cook time in minuets") Integer cookTime, String category,
-			String dietRequirement, @NotEmpty(message = "Please add a minumum of one step!") List<String> steps,
-			List<User> userLikes, List<Ingredient> ingredients, User creator, Date createdAt, Date updatedAt) {
+			String dietRequirement, ArrayList<String> steps, List<User> userLikes, List<Ingredient> ingredients,
+			User creator, Date createdAt, Date updatedAt) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -103,9 +107,6 @@ public class Recipe {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -313,12 +314,18 @@ public class Recipe {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public List<String> getSteps() {
+	public ArrayList<String> getSteps() {
 		return steps;
 	}
-	public void setSteps(List<String> steps) {
+	public void setSteps(ArrayList<String> steps) {
 		this.steps = steps;
 	}
+	
+	
+	
+	
+
+		
 
 
 }
