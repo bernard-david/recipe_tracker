@@ -2,9 +2,12 @@ package com.codingdojo.recipetracker.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.codingdojo.recipetracker.models.Recipe;
 import com.codingdojo.recipetracker.repositories.RecipeRepository;
 
+@Service
 public class RecipeService {
 	
 	private RecipeRepository recipeRepo;
