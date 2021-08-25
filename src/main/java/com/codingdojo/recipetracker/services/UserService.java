@@ -18,6 +18,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
     
+    public User getUser(Long id) {
+  		Optional<User> user = userRepo.findById(id);
+  		if(user.isPresent()) {
+  			return user.get();
+  		} else {
+  			return null;
+  		}
+  	}
+
+    
+    
     public User register(User newUser, BindingResult result) {
         if(userRepo.findByEmail(newUser.getEmail()).isPresent()) {
             result.rejectValue("email", "Unique", "This email is already in use!");

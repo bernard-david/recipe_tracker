@@ -14,6 +14,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="ingredients")
@@ -24,7 +25,7 @@ public class Ingredient {
     private Long id;
     @NotEmpty(message="Please select the ingredient measurement")
     private String measurement;
-    @NotEmpty(message="Please enter the ingredient quantity")
+    @NotNull(message="Please enter the ingredient quantity")
     private Integer quantity;
     @NotEmpty(message="Please enter the ingredient name")
     private String name;

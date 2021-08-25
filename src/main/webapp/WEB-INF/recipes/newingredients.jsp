@@ -27,7 +27,7 @@
 		    </div>
 		    <div class="form-group">
 		            <label>Quantity:</label>
-		            <form:input path="quantity" class="form-control" />
+		            <form:input type="number" path="quantity" class="form-control" />
 		            <form:errors path="quantity" class="text-danger" />
 		    </div>
 		    <div class="form-group">
