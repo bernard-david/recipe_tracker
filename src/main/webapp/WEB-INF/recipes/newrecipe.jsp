@@ -12,8 +12,8 @@
 <title>Add a Recipe</title>
 </head>
 <body>
-	<h1>Add a Recipe</h1>
 	<div class="container">
+	<h1>Add a Recipe</h1>
 		<form:form action="recipes/create" method="post" modelAttribute="newRecipe">
 			<div class="form-group">
 		            <label>Name:</label>
