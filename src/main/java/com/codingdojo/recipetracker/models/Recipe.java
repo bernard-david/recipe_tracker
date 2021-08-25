@@ -40,9 +40,9 @@ public class Recipe {
     @NotNull(message="Please enter cook time in minuets")
     private Integer cookTime;
     private String category;
-    private String dietRequirement;  
+    private String dietRequirement;
     @NotEmpty(message="Please add a minumum of one step!")
-    private List<String> steps;   
+    private List<String> steps;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -319,9 +319,6 @@ public class Recipe {
 	public void setSteps(List<String> steps) {
 		this.steps = steps;
 	}
-
-	
-	
 
 
 }
