@@ -13,7 +13,7 @@ import com.codingdojo.recipetracker.models.Recipe;
 public interface RecipeRepository extends CrudRepository<Recipe, Long>{
 	
 	List<Recipe> findAll();
-	
+
 	List<Recipe> findAllById();
 
 	List<Recipe> findByAgeOrderByCreated_atAsc();
