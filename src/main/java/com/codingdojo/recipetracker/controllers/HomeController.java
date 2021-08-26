@@ -143,6 +143,8 @@ public class HomeController {
   public String newRecipePage(Model model, HttpSession session) {
   	Long userId = this.userSessionId(session);
   	if(userId == null) {
+  		User user = userServ.getUser(userId);
+  		model.addAttribute("user", user);
   		return "redirect:/";
   	}
   	model.addAttribute("recipe", recipeServ.getRecipe());
