@@ -150,7 +150,8 @@ public class HomeController {
   		model.addAttribute("user", user);
   		return "redirect:/";
   	}
-  	model.addAttribute("recipe", recipeServ.getRecipe());
+  	User user = userServ.getUser(userId);
+  	model.addAttribute("user", user);
       return "/recipes/allrecipes.jsp";
   }
   
