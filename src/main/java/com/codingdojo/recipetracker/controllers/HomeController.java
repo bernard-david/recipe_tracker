@@ -155,10 +155,54 @@ public class HomeController {
       return "/recipes/allrecipes.jsp";
   }
   
-//  ------------------------------------------------------------------------------
+
     
+  
+//------------------------------------------------------------------------------
+// Edit Recipe
+//------------------------------------------------------------------------------
     
-    
+  @GetMapping("/recipe/edit/{id}")
+  public String editRecipe(@ModelAttribute("recipe") Recipe recipe, Model model, HttpSession session, @PathVariable("id") Long id) {
+	  Long userId = this.userSessionId(session);
+	  if(userId == null) {
+	  		User user = userServ.getUser(userId);
+	  		model.addAttribute("user", user);
+	  		return "redirect:/";
+	  	}
+	  	User user = userServ.getUser(userId);
+	  	model.addAttribute("user", user);
+	  	model.addAttribute("recipe", recipeServ.getRecipe(id));
+	  	session.setAttribute("recipeId", id);
+	  	return "/recipes/editrecipe.jsp";
+  }
+  
+  @RequestMapping("/ingredient/{id}/delete")
+  public String deleteIngredient(@PathVariable("id") Long ingredientId, HttpSession session) {
+	  Long recipeId = (Long) session.getAttribute("recipeId");
+	  Recipe recipe = recipeServ.getRecipe(recipeId);
+	  Ingredient ingredient = ingredientServ.getIngredient(ingredientId);
+	  ingredientServ.deleteIngredient(ingredientId);
+	  // for safe measure >>	  
+	  recipe.getIngredients().remove(ingredient);
+	  recipeServ.createRecipe(recipe);
+	  return "redirect:/recipe/edit/" + recipe.getId();
+  }
+  
+  @PostMapping("/recipe/update/{id}")
+  public String updateRecipe(@Valid @ModelAttribute("recipe") Recipe recipe, BindingResult result, @PathVariable("id") Long id){
+	  if(result.hasErrors()) {
+			return "/recipes/editrecipe.jsp";
+		}
+	  else {
+		  recipeServ.createRecipe(recipe);
+		  
+		  return "redirect:/recipes";
+	  }
+	  
+  }
+  
+//------------------------------------------------------------------------------
     
     
     

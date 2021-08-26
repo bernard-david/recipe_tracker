@@ -19,7 +19,7 @@
 		<img src="${recipe.picture}" alt="recipe image" width="auto" height="300"><br/><br/>
 		<button class="btn btn-primary">Like</button>
 		<button class="btn btn-primary">Share</button>
-		<button class="btn btn-primary">Edit</button>	
+		<a href="/recipe/edit/${recipe.id}" class="btn btn-primary">Edit</a>	
 	</div>
 	<div>
 		<h1>${recipe.name}</h1>

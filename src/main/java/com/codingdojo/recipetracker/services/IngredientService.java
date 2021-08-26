@@ -30,4 +30,8 @@ public class IngredientService {
 		ingredientRepo.save(newIngredient);
 	}
 	
+	public void deleteIngredient(Long id) {
+		ingredientRepo.deleteById(id);
+	}
+	
 }
