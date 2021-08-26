@@ -112,7 +112,7 @@ public class HomeController {
         ingredientServ.createIngredient(newIngredient);
         recipe.getIngredients().add(newIngredient);
         recipeServ.createRecipe(recipe);
-        return "redirect:/new-recipe";
+        return "redirect:/new-ingredient";
     }
     
     

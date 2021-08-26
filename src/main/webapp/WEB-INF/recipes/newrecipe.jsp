@@ -37,6 +37,7 @@
 		    </div>
 		    <div class="form-group">
 		    	<label>Under 30?</label>
+		    	<form:errors path="under30" class="text-danger" />
 		    	Yes<form:radiobutton path="under30" value="${true}"/>
 		    	No<form:radiobutton path="under30" value="${false}"/>
 		    </div>
