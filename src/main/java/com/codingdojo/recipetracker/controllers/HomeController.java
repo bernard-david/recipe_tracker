@@ -133,6 +133,7 @@ public class HomeController {
     		return "redirect:/";
     	}
     	model.addAttribute("recipe", recipeServ.getRecipe(id));
+    	model.addAttribute("user", userServ.getUser(userId));
         return "/recipes/showrecipe.jsp";
     }
     
@@ -206,8 +207,23 @@ public class HomeController {
   
 //------------------------------------------------------------------------------
     
-    
-    
+//------------------------------------------------------------------------------
+//		Like/Unlike routes
+//------------------------------------------------------------------------------
+  
+  @GetMapping("/like/{id}")
+  public String like(@PathVariable("id") Long recipeId, HttpSession session, Model model) {
+	  Long userId = this.userSessionId(session);
+	  recipeServ.add(recipeId, userId);
+	  return "redirect:/recipe/{id}";
+  }
+  
+  @GetMapping("/unlike/{id}")
+  public String unlike(@PathVariable("id") Long recipeId, HttpSession session, Model model) {
+	  Long userId = this.userSessionId(session);
+	  recipeServ.remove(recipeId, userId);
+	  return "redirect:/recipe/{id}";
+  }
     
     
 //    ------------------------------------------------------------------------------
