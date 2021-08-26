@@ -173,13 +173,13 @@ public class HomeController {
 	  	User user = userServ.getUser(userId);
 	  	model.addAttribute("user", user);
 	  	model.addAttribute("recipe", recipeServ.getRecipe(id));
-	  	session.setAttribute("recipeId", id);
+	  	session.setAttribute("updaterecipeId", id);
 	  	return "/recipes/editrecipe.jsp";
   }
   
   @RequestMapping("/ingredient/{id}/delete")
   public String deleteIngredient(@PathVariable("id") Long ingredientId, HttpSession session) {
-	  Long recipeId = (Long) session.getAttribute("recipeId");
+	  Long recipeId = (Long) session.getAttribute("updaterecipeId");
 	  Recipe recipe = recipeServ.getRecipe(recipeId);
 	  Ingredient ingredient = ingredientServ.getIngredient(ingredientId);
 	  ingredientServ.deleteIngredient(ingredientId);
