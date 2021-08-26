@@ -27,7 +27,7 @@
 		    </div>
 		    <div class="form-group">
 		            <label>Quantity:</label>
-		            <form:input path="quantity" class="form-control" />
+		            <form:input type="number" path="quantity" class="form-control" />
 		            <form:errors path="quantity" class="text-danger" />
 		    </div>
 		    <div class="form-group">
@@ -35,8 +35,11 @@
 		            <form:input path="brand" class="form-control" />
 		            <form:errors path="brand" class="text-danger" />
 		    </div>
-		    <input type="submit" value="Finish" class="btn btn-primary" />
+		    <br />
+		    <input type="submit" value="One more Ingredient" class="btn btn-primary" />
 		</form:form>
+		<br />
+		<a href="/recipes">Finish Recipe</a>
 	</div>
 </body>
 </html>
