@@ -1,5 +1,7 @@
 package com.codingdojo.recipetracker.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -48,8 +50,11 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
+    	List<Recipe> recipeOrderedByAsc = recipeServ.getRecipeAscOrder();
+    	model.addAttribute("Recent", recipeOrderedByAsc);
         return "/home/index.jsp";
     }
+    
 //    ------------------------------------------------------------------------------
     
     
