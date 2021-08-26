@@ -1,6 +1,7 @@
 package com.codingdojo.recipetracker.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -50,11 +51,12 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
-
-    	List<Recipe> recipeOrderedByAsc = recipeServ.getRecipeAscOrder();
+    	User user = userServ.getUser(userId);
     	
-    	model.addAttribute("Recent", recipeOrderedByAsc);
-
+//    	List<Recipe> otherRecipe = recipeServ.findRecipeNotInUser(user);
+    	List<Recipe> recipeOrderedByDesc = recipeServ.getRecipeDescOrder();
+    	model.addAttribute("recent", recipeOrderedByDesc);
+//    	model.addAttribute("otherRecipe", otherRecipe);
         return "/home/index.jsp";
     }
     

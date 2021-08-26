@@ -17,13 +17,17 @@
 		<a href="/logout">logout</a>
 	</nav>
 	<div>
-		<a href="/new-recipe" class="btn btn-primary stretched-link">Create Recipe</a>
+		<a href="/new-recipe" class="btn btn-primary">Create Recipe</a>
 	</div>
 	<h1>Recently Added</h1>
-	
+	<c:forEach items="${ recent }" var="i">
+		${i.name }
+	</c:forEach>
 	
 	<h1>Other User Recipes</h1>
-	
+	<c:forEach items="${ otherRecipe }" var="i">
+		${i.name }
+	</c:forEach>
 	</div>
 </body>
 </html>
