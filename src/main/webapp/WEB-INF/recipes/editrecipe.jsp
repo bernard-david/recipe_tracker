@@ -9,12 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<title>Add a Recipe</title>
+<title>Edit ${recipe.name}</title>
 </head>
 <body>
-	<div class="container">
-	<h1>Add a Recipe</h1>
-		<form:form action="recipes/create" method="post" modelAttribute="newRecipe">
+<div class="container">
+<form:form action="/recipe/update/${recipe.id}" method="post" modelAttribute="recipe">
 			<div class="form-group">
 		            <label>Name:</label>
 		            <form:input path="name" class="form-control" />
@@ -77,15 +76,13 @@
 		    </div>
 		    <br />
 		    <form:hidden path="creator" value="${user.id}"/>
-		    <input type="submit" value="Add Ingredients" class="btn btn-primary" />
+		    <h4>Ingredients</h4>
+		    <c:forEach items="${recipe.ingredients}" var="ingredient">
+		    	<p>${ingredient.name} ${ingredient.quantity} ${ingredient.measurement} ${ingredient.brand } <a href="/ingredient/${ingredient.id}/delete">Delete</a></p>
+		    </c:forEach>
+		    <input type="submit" value="Update" class="btn btn-primary" />
 		</form:form>
-	</div>
+</div>
+
 </body>
 </html>
-
-
-
-
-
-
-
