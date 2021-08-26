@@ -26,9 +26,12 @@ public class RecipeService {
 	}
 	
 	public List<Recipe> getRecipeAscOrder(){
-		List<Recipe> recipe = this.recipeRepo.findByAgeOrderByCreated_atAsc();
+		List<Recipe> recipe = this.recipeRepo.findAllByOrderByCreatedAtAsc();
 		return recipe;
 	}
+	
+
+	
 	
 	public Recipe createRecipe(Recipe newRecipe) {
 		return recipeRepo.save(newRecipe);

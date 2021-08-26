@@ -5,12 +5,25 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<title>Recipe Tracker</title>
 </head>
 <body>
-	<div id="container">
-		<h1>Welcome Home</h1>
+	
+	<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a href="/">My Account</a>
+		<a href="/recipes">My Recipes</a>
 		<a href="/logout">logout</a>
+	</nav>
+	<div>
+		<a href="/new-recipe" class="btn btn-primary stretched-link">Create Recipe</a>
+	</div>
+	<h1>Recently Added</h1>
+	
+	
+	<h1>Other User Recipes</h1>
+	
 	</div>
 </body>
 </html>
