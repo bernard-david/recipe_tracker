@@ -1,6 +1,7 @@
 package com.codingdojo.recipetracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,25 @@ public class RecipeService {
 		return this.recipeRepo.findById(id).orElse(null);
 	}
 	
-	public List<Recipe> getRecipeAscOrder(){
-		List<Recipe> recipe = this.recipeRepo.findAllByOrderByCreatedAtAsc();
+	public List<Recipe> getRecipeDescOrder(){
+		List<Recipe> recipe = this.recipeRepo.findAllByOrderByCreatedAtDesc();
 		return recipe;
 	}
 	
-
+//	public Optional<Recipe> getOtherRecipe(User user){
+//		Optional<Recipe> recipe = this.recipeRepo.findAllByCreatorNotContains(user);
+//		System.out.println(recipe);
+//		if(recipe.isPresent()) {
+//			return recipe;
+//		} else {
+//  			return null;
+//  		}
+//	}
+	
+	public List<Recipe> findRecipeNotInUser(User user) {
+		System.out.println(user);
+		return recipeRepo.findByCreatorNotContains(user);
+	}
 	
 	
 	public Recipe createRecipe(Recipe newRecipe) {
