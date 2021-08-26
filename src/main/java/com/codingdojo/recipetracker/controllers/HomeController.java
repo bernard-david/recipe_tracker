@@ -1,5 +1,7 @@
 package com.codingdojo.recipetracker.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import com.codingdojo.recipetracker.models.Ingredient;
 import com.codingdojo.recipetracker.models.LoginUser;
 import com.codingdojo.recipetracker.models.Recipe;
 import com.codingdojo.recipetracker.models.User;
+import com.codingdojo.recipetracker.services.IngredientService;
 import com.codingdojo.recipetracker.services.RecipeService;
 import com.codingdojo.recipetracker.services.UserService;
 
@@ -27,6 +30,8 @@ public class HomeController {
     private UserService userServ;
     @Autowired
     private RecipeService recipeServ;
+    @Autowired
+    private IngredientService ingredientServ;
     
     public Long userSessionId(HttpSession session) {
     	if(session.getAttribute("user_id") == null)
@@ -45,8 +50,11 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
+    	List<Recipe> recipeOrderedByAsc = recipeServ.getRecipeAscOrder();
+    	model.addAttribute("Recent", recipeOrderedByAsc);
         return "/home/index.jsp";
     }
+    
 //    ------------------------------------------------------------------------------
     
     
@@ -60,6 +68,7 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
+    	model.addAttribute("user",userServ.getUser(userId));
         return "/recipes/newrecipe.jsp";
     }
     
@@ -70,6 +79,8 @@ public class HomeController {
             return "/recipes/newrecipe.jsp";
         }
         
+        Recipe r = recipeServ.createRecipe(newRecipe);
+        session.setAttribute("recipe_id", r.getId());
         return "redirect:/new-ingredient";
     }
     
@@ -93,7 +104,11 @@ public class HomeController {
         if(result.hasErrors()) {
             return "/recipes/newingredients.jsp";
         }
-        
+        Recipe recipe = recipeServ.getRecipe((Long) session.getAttribute("recipe_id"));
+        newIngredient.setRecipe(recipe);
+        ingredientServ.createIngredient(newIngredient);
+        recipe.getIngredients().add(newIngredient);
+        recipeServ.createRecipe(recipe);
         return "redirect:/new-recipe";
     }
     
