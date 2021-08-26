@@ -74,10 +74,17 @@
 	            </form:select>
 	            <form:errors path="prepTime" class="text-danger" />
 		    </div>
+		    <div class="form-group">
+		            <label>Steps:</label>
+		            <form:textarea path="steps" class="form-control" />
+		            <form:errors path="steps" class="text-danger" />
+		    </div>
 		    <br />
 		    <form:hidden path="creator" value="${user.id}"/>
 		    <input type="submit" value="Add Ingredients" class="btn btn-primary" />
 		</form:form>
+		<br />
+		<a href="/home" class="btn btn-info">Cancel</a>
 	</div>
 </body>
 </html>
