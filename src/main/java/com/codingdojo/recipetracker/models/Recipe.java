@@ -43,7 +43,7 @@ public class Recipe {
     private String category;
     private String dietRequirement;
 
-    private ArrayList<String> steps;
+    private String steps;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -83,13 +83,14 @@ public class Recipe {
     
 	
 	
+
 	public Recipe(Long id, @NotEmpty(message = "Please enter the recipe name") String name,
 			@NotEmpty(message = "Please enter the recipe description") String description, String extraComments,
 			String picture, @NotNull(message = "Please select Yes or No") Boolean under30,
 			@NotNull(message = "Please enter prep time in minuets") Integer prepTime,
 			@NotNull(message = "Please enter cook time in minuets") Integer cookTime, String category,
-			String dietRequirement, ArrayList<String> steps, List<User> userLikes, List<Ingredient> ingredients,
-			User creator, Date createdAt, Date updatedAt) {
+			String dietRequirement, String steps, List<User> userLikes, List<Ingredient> ingredients, User creator,
+			Date createdAt, Date updatedAt) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -314,12 +315,13 @@ public class Recipe {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public ArrayList<String> getSteps() {
+	public String getSteps() {
 		return steps;
 	}
-	public void setSteps(ArrayList<String> steps) {
+	public void setSteps(String steps) {
 		this.steps = steps;
 	}
+	
 	
 	
 	
