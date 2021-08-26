@@ -12,13 +12,35 @@
 <title>${recipe.name}</title>
 </head>
 <body>
-<a href="/home">Home</a><br/>
-<a href="/recipes"/>Go Back</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+		    <a class="navbar-brand" href="/home">Recipe Tracker</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav">
+			    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				      <div class="navbar-nav">
+				        <a class="nav-link active" aria-current="page" href="/home">Dashboard</a>
+				        <a class="nav-link" href="/new-recipe">New Recipe</a>
+				        <a class="nav-link" href="/logout">Logout</a>
+				      </div>
+				</div>
+		    </div>
+		</div>
+</nav>
+<br />
 <div class="container" style="display: flex;  gap:2em; margin">
 	<div>
 		<img src="${recipe.picture}" alt="recipe image" width="auto" height="300"><br/><br/>
-		<button class="btn btn-primary">Like</button>
-		<button class="btn btn-primary">Share</button>
+		<c:choose>
+			<c:when test="${!user.recipeLikes.contains(recipe)}">
+				<a href="/like/${recipe.id}" class="btn btn-primary">Like</a>
+			</c:when>
+			<c:otherwise>
+				<a href="/unlike/${recipe.id}" class="btn btn-info">UnLike</a>
+			</c:otherwise>
+		</c:choose>
 		<a href="/recipe/edit/${recipe.id}" class="btn btn-primary">Edit</a>	
 	</div>
 	<div>

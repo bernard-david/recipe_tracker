@@ -13,9 +13,11 @@ import com.codingdojo.recipetracker.repositories.RecipeRepository;
 public class RecipeService {
 	
 	private RecipeRepository recipeRepo;
+	private UserService userServ;
 
-	public RecipeService(RecipeRepository recipeRepo) {
+	public RecipeService(RecipeRepository recipeRepo, UserService userServ) {
 		this.recipeRepo = recipeRepo;
+		this.userServ = userServ;
 	}
 	
 	public List<Recipe> getRecipe() {
@@ -51,4 +53,31 @@ public class RecipeService {
 		return recipeRepo.save(newRecipe);
 	}
 	
+	//like a recipe
+	public Recipe add(Long recipeId, Long userId) {
+		Recipe thisRecipe = getRecipe(recipeId);
+		
+		User thisUser = userServ.getUser(userId);
+		
+		thisRecipe.getUserLikes().add(thisUser);
+		
+		return recipeRepo.save(thisRecipe);
+	}
+	
+	//unlike a recipe
+		public Recipe remove(Long recipeId, Long userId) {
+			Recipe thisRecipe = getRecipe(recipeId);
+			
+			User thisUser = userServ.getUser(userId);
+			
+			thisRecipe.getUserLikes().remove(thisUser);
+			
+			return recipeRepo.save(thisRecipe);
+		}
+	
 }
+
+
+
+
+
