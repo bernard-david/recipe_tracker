@@ -50,7 +50,9 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
+    	
     	List<Recipe> recipeOrderedByAsc = recipeServ.getRecipeAscOrder();
+    	
     	model.addAttribute("Recent", recipeOrderedByAsc);
         return "/home/index.jsp";
     }
