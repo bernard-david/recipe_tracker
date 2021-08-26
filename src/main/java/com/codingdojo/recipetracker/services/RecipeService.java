@@ -41,9 +41,8 @@ public class RecipeService {
 //  		}
 //	}
 	
-	public List<Recipe> findRecipeNotInUser(User user) {
-		System.out.println(user);
-		return recipeRepo.findByCreatorNotContains(user);
+	public List<Recipe> findRecipeNotInUser(Long id) {
+		return recipeRepo.findByCreatorNotContaining(id);
 	}
 	
 	

@@ -51,12 +51,12 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
-    	User user = userServ.getUser(userId);
+//    	User user = userServ.getUser(userId);
     	
-//    	List<Recipe> otherRecipe = recipeServ.findRecipeNotInUser(user);
+    	List<Recipe> otherRecipe = recipeServ.findRecipeNotInUser(userId);
     	List<Recipe> recipeOrderedByDesc = recipeServ.getRecipeDescOrder();
     	model.addAttribute("recent", recipeOrderedByDesc);
-//    	model.addAttribute("otherRecipe", otherRecipe);
+    	model.addAttribute("otherRecipe", otherRecipe);
         return "/home/index.jsp";
     }
     

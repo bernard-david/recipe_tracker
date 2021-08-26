@@ -21,6 +21,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long>{
 	List<Recipe> findAllByOrderByCreatedAtDesc();
 	
 //	Optional<Recipe> findAllByCreatorNotContains(User user);
-	List<Recipe> findByCreatorNotContains(User user);
+	@Query(value="SELECT * FROM recipe.recipes WHERE user_id NOT like ?1", nativeQuery=true)
+	List<Recipe> findByCreatorNotContaining(Long id);
 
 }
