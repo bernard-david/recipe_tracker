@@ -12,7 +12,27 @@
 <title>Edit ${recipe.name}</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+		    <a class="navbar-brand" href="/home">Recipe Tracker</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav">
+			    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+				      <div class="navbar-nav">
+				        <a class="nav-link active" aria-current="page" href="/home">Dashboard</a>
+				        <a class="nav-link" href="/new-recipe">New Recipe</a>
+				        <a class="nav-link" href="/recipes">My Recipes</a>
+				        <a class="nav-link" href="/logout">Logout</a>
+				      </div>
+				</div>
+		    </div>
+		</div>
+	</nav>
+	<br />
 <div class="container">
+<h1>Edit <c:out value="${recipe.name}"/></h1>
 <form:form action="/recipe/update/${recipe.id}" method="post" modelAttribute="recipe">
 			<div class="form-group">
 		            <label>Name:</label>
