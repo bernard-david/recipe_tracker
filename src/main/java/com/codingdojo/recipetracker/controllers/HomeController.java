@@ -51,8 +51,8 @@ public class HomeController {
     	if(userId == null) {
     		return "redirect:/";
     	}
-//    	User user = userServ.getUser(userId);
-    	
+    	User user = userServ.getUser(userId);
+    	model.addAttribute("user", user);
     	List<Recipe> otherRecipe = recipeServ.findRecipeNotInUser(userId);
     	List<Recipe> recipeOrderedByDesc = recipeServ.getRecipeDescOrder();
     	model.addAttribute("recent", recipeOrderedByDesc);

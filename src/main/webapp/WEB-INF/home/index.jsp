@@ -23,6 +23,7 @@
 				      <div class="navbar-nav">
 				        <a class="nav-link active" aria-current="page" href="/home">Dashboard</a>
 				        <a class="nav-link" href="/new-recipe">New Recipe</a>
+				        <a class="nav-link" href="/recipes">My Recipes</a>
 				        <a class="nav-link" href="/logout">Logout</a>
 				      </div>
 				</div>
@@ -30,9 +31,8 @@
 		</div>
 	</nav>
 	<div class="container">
-	
-	
-	<h1>Recently Added</h1>
+	<h1>Welcome, <c:out value="${user.userName}"/></h1>
+	<h3>Recently Added</h3>
 	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   
   <div class="carousel-inner">
@@ -76,8 +76,8 @@
 	
 	
 	
-	<h1>Other User Recipes</h1>
-	<div class="d-flex gap-3 flex-wrap justify-content-between">
+	<h3>Other User Recipes</h3>
+	<div class="d-flex gap-3 flex-wrap">
 	<c:forEach items="${ otherRecipe }" var="i">
 		<div class="card" style="width: 18rem;">
 				<a href="/recipe/${i.id}"><img src="${i.picture}" class="card-img-top" alt="" /></a>
